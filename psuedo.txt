@@ -1,0 +1,22 @@
+As a user,
+
+When I open the application, I want to ge greated with:
+* A "Welcome" to what the application is and a brief description on how to begin.
+* A "start" button 
+
+Once I begin the application, I want to:
+-See a timer on the display
+-Add time for every (correct) answer ---> probably boolean
+-Subtract time for every (wrong) answer ----> probably boolean
+-See multiple choice questions
+-See fill in the "blank" questions.
+-Refresh the questions in random order if the user is playing again.
+
+At the end of the application, I want to see:
+-A tally of correct and incorrect answers
+-Award the user "points" for every correct answer
+-Allow the user to store their score (organized from highest to lowest)
+-Allow the user to try again.
+
+Variables:
+1. The correct answers for the questions
