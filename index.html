@@ -9,73 +9,90 @@
 </head>
 <body>
     <!--Opening Header-->
-    <Section>    
+    <section id="opening-screen">    
     <h1>Welcome to the game of coding knowledge!</h1>
-    <p>Press the "START" button to test your chops and beat your high score!</p>
+    <p id="start-text">Press the "START" button to test your chops and beat your high score!</p>
     
     <!--Button Section-->
         <!--Start Button-->
         <div>
-            <button>START</button>
+            <button id="start-btn">START</button>
         </div>
     </section>
 
     <!--Questions Section-->
     <section>
         <!--Question 1-->
-        <div class="question-1">
+        <div id="question-1">
             <h2>What statement generates a "loop" ?</h2>
-            <ul class="question1-answers">
-                <li>"if" statement</li>
-                <li>"return" statement</li>
+            <ul id="question1-answers">
+                <li id="wrong1"><button>"if" statement</button></li>
+                <li id="wrong1"><button>"return" statement</button></li>
                 <!--Correct Answer-->
-                <li>"for" statement</li>
-                <li>"loop" statement</li>
+                <li id="correct1"><button>"for" statement</button></li>
+                <li id="wrong1"><button>"loop" statement</button></li>
             </ul>
         </div>
 
         <!--Question 2-->
-        <div class="question-2">
+        <div id="question-2">
             <h2>Which of the following is the "strict" equality operator?</h2>
-            <ul class="question2-answers">
-                <li>"=="</li>
-                <li>"!="</li>
-                <li>"="</li>
+            <ul id="question2-answers">
+                <li id="wrong2">"=="</li>
+                <li id="wrong2">"!="</li>
+                <li id="wrong2">"="</li>
                 <!--Correct Answer-->
-                <li>"==="</li>
+                <li id="correct2">"==="</li>
             </ul>
         </div>
 
         <!--Question 3-->
-        <div class="question-3">
+        <div id="question-3">
             <h2>In what scope do functions search for variables first when executing the function?</h2>
-            <ul class="question3-answers">
-                <li>Global Scope</li>
+            <ul id="question3-answers">
+                <li id="wrong3">Global Scope</li>
                 <!--Correct Answer-->
-                <li>Local Scope</li>
+                <li id="correct3">Local Scope</li>
             </ul>
         </div>
 
         <!--Question 4-->
-        <div class="question-4">
+        <div id="question-4">
             <h2>How do you convert a "string" in to a "numeric" value?</h2>
-            <ul class="question4-answers">
+            <ul id="question4-answers">
                 <!--Correct Answer-->
-                <li>parseInt(</li>
-                <li>floatInt(</li>
-                <li>getNumber(</li>
-                <li>Number(</li>
+                <li id="correct4">parseInt(</li>
+                <li id="wrong4">floatInt(</li>
+                <li id="wrong4">getNumber(</li>
+                <li id="wrong4">Number(</li>
             </ul>
         </div>
 
         <!--Question 5-->
-        <div class="question-5">
+        <div id="question-5">
             <h2>Question 5</h2>
-            <ul class="question5-answers">
-                <li></li>
-                <li></li>
+            <ul id="question5-answers">
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+                <li>D</li>
             </ul>
         </div>
+
     </section>
+
+    <!--"NEXT" Button Section-->
+    <section>
+        <div>
+            <button id="next-btn">Next Question</button>
+        </div>
+    </section>
+    
+    <!--JQUERY Import JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--Custom JS-->
+    <script src="./Assets/js/script.js"></script>
 </body>
 </html>
