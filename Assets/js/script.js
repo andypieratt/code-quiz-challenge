@@ -4,22 +4,48 @@ var nextBtn = $("#next-btn");
 var wrongBtn = $("#wrong");
 var correctBtn = $("#correct");
 
-// Question and Choice Variables
-var questionOne = $("#question-1", questionOneTest());
-var questionTwo = $("#question-2", questionTwoTest());
-var questionThree = $("#question-3");
-var questionFour = $("#question-4");
-var questionFive = $("#question-5");
+// Question and Answer Variables
+var questionsArr = [
+    {
+        question: 'What statement generates a "loop?"',
+        answers: [
+            { text: '"If" Statement', correct: false },
+            { text: '"Return" Statement', correct: false },
+            { text: '"For" Statement', correct: true },
+            { text: '"Loop" Statement', correct: false }
+        ]
+    },
+    {
+        question: 'Which of the following is the "strict" equality operator?',
+        answers: [
+            { text: '==', correct: false },
+            { text: '!=', correct: false },
+            { text: '=', correct: false },
+            { text: '===', correct: true }
+        ]
+    },
+    {
+        question: 'In what scopre do functions search for variables first?',
+        answers: [
+            { text: 'Global Scope', correct: false },
+            { text: 'Local Scope', correct: true },
+            { text: 'Function Scope', correct: false }
+        ]
+    },
+    {
+        question: 'How do you converr a "string" to a "numeric" value?',
+        answers: [
+            { text: 'parseInt()', correct: true },
+            { text: 'floatInt()', correct: false },
+            { text: 'getNumber()', correct: false },
+            { text: 'Number()', correct: false }
+        ]
+    },
+];
+
 var openScreen = $("#opening-screen");
 var userChoice = (correctBtn, wrongBtn);
 
-// var questionsArr = [
-//     { question1: "#question1" },
-//     { question2: "#question2" },
-//     { question3: "#question3" },
-//     { question4: "#question4" },
-//     { question5: "#question5" }
-// ]
 
 // Timer and Current Index #
 var timer = 30;
@@ -46,6 +72,10 @@ function openingScreen() {
 // Opening Screen Call
 openingScreen();
 
+
+// Start Game Call
+startBtn.on('click', startGame);
+
 // Start Game Function
 function startGame() {
     // Hide Start Button
@@ -59,9 +89,6 @@ function startGame() {
     // Being Timer Countdown
 }
 
-// Start Game Call
-startBtn.on('click', startGame);
-
 // Question One Function
 function questionOneTest() {
     var correct = correctBtn;
@@ -74,6 +101,9 @@ function questionOneTest() {
         questionTwo.show();  
     }
 } 
+
+
+
 
 // Question Two Function
 function questionTwoTest() {
