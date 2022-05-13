@@ -1,58 +1,50 @@
 // Button Variables
 var startBtn = $("#start-btn");
 var nextBtn = $("#next-btn");
-var answerBtn = $('#answer-btns');
 
 // Question and Answer Variables
 var questionsArr = [
     {
-        question: 'What statement generates a "loop?"'
-    
+        question: 'What statement generates a "loop?"',
+        answers: [
+            { text: '"If" Statement', correct: false },
+            { text: '"Return" Statement', correct: false },
+            { text: '"For" Statement', correct: true },
+            { text: '"Loop" Statement', correct: false }
+        ]
     },
     {
-        question: 'Which of the following is the "strict" equality operator?'
+        question: 'Which of the following is the "strict" equality operator?',
+        answers: [
+            { text: '==', correct: false },
+            { text: '!=', correct: false },
+            { text: '=', correct: false },
+            { text: '===', correct: true }
+        ]
     },
     {
-        question: 'In what scope do functions search for variables first?'
+        question: 'In what scope do functions search for variables first?',
+        answers: [
+            { text: 'Global Scope', correct: false },
+            { text: 'Local Scope', correct: true },
+            { text: 'Function Scope', correct: false }
+        ]
     },
     {
-        question: 'How do you convert a "string" to a "numeric" value?'
+        question: 'How do you convert a "string" to a "numeric" value?',
+        answers: [
+            { text: 'parseInt()', correct: true },
+            { text: 'floatInt()', correct: false },
+            { text: 'getNumber()', correct: false },
+            { text: 'Number()', correct: false }
+        ]
     },
 ];
 
-var answersArr = [{
-    answers: [
-        { text: '"If" Statement', correct: false },
-        { text: '"Return" Statement', correct: false },
-        { text: '"For" Statement', correct: true },
-        { text: '"Loop" Statement', correct: false }
-    ],
-    answers: [
-        { text: '==', correct: false },
-        { text: '!=', correct: false },
-        { text: '=', correct: false },
-        { text: '===', correct: true }
-    ],
-    answers: [
-        { text: 'Global Scope', correct: false },
-        { text: 'Local Scope', correct: true },
-        { text: 'Function Scope', correct: false }
-    ],
-    answers: [
-        { text: 'parseInt()', correct: true },
-        { text: 'floatInt()', correct: false },
-        { text: 'getNumber()', correct: false },
-        { text: 'Number()', correct: false }
-    ]
-}];
-
-console.log(questionsArr.answers);
-
+var answers = $('#answers');
 var questions = $("#questions");
 var questionContainer = $('#question-container');
 var questionIndex = -1;
-var answersIndex = -1;
-var answers = $('#answer-btns');
 
 // Welcome Screen Variables
 var openScreen = $("#opening-screen");
@@ -85,35 +77,98 @@ function startGame() {
     startBtn.hide();
     // Hide Welcome Screen
     openScreen.hide();
-    // Show QUESTIONS
+    // Show QUESTION 1
     questionContainer.show();
-    showQuestion();
+    showQuestion1();
+    choiceBtn1.on('click', correctAnswer);
     // Show Next Button
     nextBtn.show();
-    // Next Button Function
-    nextBtn.on('click', showQuestion);
+    // Next Button to QUESTION 2 Function
+    nextBtn.on('click', showQuestion2);
+    // Next Button to QUESTION 3 Function
+    nextBtn.on('click', showQuestion3);
     // Being Timer Countdown
 
 }
+console.log(questionsArr[0].answers[0]);
 
 
-function showQuestion() {
-    questionIndex++;
-    questions.text(questionsArr[questionIndex].question);
-    answersIndex++;
-    answers.text(answersArr[answersIndex].answers);
-    answers.append(answersArr.answer)
-
+// QUESTION 1 FUNCTION
+function showQuestion1() {
+    questions.text(questionsArr[0].question);
+    var choiceBtn1 = document.createElement('button');
+    choiceBtn1.innerHTML = questionsArr[0].answers[0].text;
+    var choiceBtn2 = document.createElement('button');
+    choiceBtn2.innerHTML = questionsArr[0].answers[1].text;
+    var choiceBtn3 = document.createElement('button');
+    choiceBtn3.innerHTML = questionsArr[0].answers[2].text;
+    var choiceBtn4 = document.createElement('button');
+    choiceBtn4.innerHTML = questionsArr[0].answers[3].text;
+    answers.append(choiceBtn1);
+    // choiceBtn1.on('click', correctAnswer);
+    answers.append(choiceBtn2);
+    // choiceBtn2.on('click', correctAnswer);
+    answers.append(choiceBtn3);
+    // choiceBtn3.on('click', correctAnswer);
+    answers.append(choiceBtn4);
+    // choiceBtn4.on('click', correctAnswer);
 }
 
-function questionAnswer() {
-    questionIndex++;
-    if (questionsArr.length > questionIndex) {
-        showQuestion();
-    } else {
-        endGame();
+// QUESTION 2 FUNCTION
+function showQuestion2() {
+    answers.empty();
+    questions.text(questionsArr[1].question);
+    var choiceBtn1 = document.createElement('button');
+    choiceBtn1.innerHTML = questionsArr[1].answers[0].text;
+    var choiceBtn2 = document.createElement('button');
+    choiceBtn2.innerHTML = questionsArr[1].answers[1].text;
+    var choiceBtn3 = document.createElement('button');
+    choiceBtn3.innerHTML = questionsArr[1].answers[2].text;
+    var choiceBtn4 = document.createElement('button');
+    choiceBtn4.innerHTML = questionsArr[1].answers[3].text;
+    answers.append(choiceBtn1);
+    answers.append(choiceBtn2);
+    answers.append(choiceBtn3);
+    answers.append(choiceBtn4);
+    correctAnswer();
+}
+
+// QUESTION 3 FUNCTION
+function showQuestion3() {
+    answers.empty();
+    questions.text(questionsArr[2].question);
+    var choiceBtn1 = document.createElement('button');
+    choiceBtn1.innerHTML = questionsArr[2].answers[0].text;
+    var choiceBtn2 = document.createElement('button');
+    choiceBtn2.innerHTML = questionsArr[2].answers[1].text;
+    var choiceBtn3 = document.createElement('button');
+    choiceBtn3.innerHTML = questionsArr[2].answers[2].text;
+    answers.append(choiceBtn1);
+    answers.append(choiceBtn2);
+    answers.append(choiceBtn3);
+    correctAnswer();
+}
+
+function correctAnswer() {
+    if (answers === true) {
+        scoreIndex++;
+    } else if (answers === false) {
+        timeIndex - 5;
     }
+    
 }
+
+
+
+
+// function questionAnswer() {
+//     questionIndex++;
+//     if (questionsArr.length > questionIndex) {
+//         showQuestion();
+//     } else {
+//         endGame();
+//     }
+// }
 
 
 
