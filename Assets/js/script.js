@@ -1,132 +1,121 @@
 // Button Variables
 var startBtn = $("#start-btn");
 var nextBtn = $("#next-btn");
-var wrongBtn = $("#wrong");
-var correctBtn = $("#correct");
+var answerBtn = $('#answer-btns');
 
 // Question and Answer Variables
 var questionsArr = [
     {
-        question: 'What statement generates a "loop?"',
-        answers: [
-            { text: '"If" Statement', correct: false },
-            { text: '"Return" Statement', correct: false },
-            { text: '"For" Statement', correct: true },
-            { text: '"Loop" Statement', correct: false }
-        ]
+        question: 'What statement generates a "loop?"'
+    
     },
     {
-        question: 'Which of the following is the "strict" equality operator?',
-        answers: [
-            { text: '==', correct: false },
-            { text: '!=', correct: false },
-            { text: '=', correct: false },
-            { text: '===', correct: true }
-        ]
+        question: 'Which of the following is the "strict" equality operator?'
     },
     {
-        question: 'In what scopre do functions search for variables first?',
-        answers: [
-            { text: 'Global Scope', correct: false },
-            { text: 'Local Scope', correct: true },
-            { text: 'Function Scope', correct: false }
-        ]
+        question: 'In what scope do functions search for variables first?'
     },
     {
-        question: 'How do you converr a "string" to a "numeric" value?',
-        answers: [
-            { text: 'parseInt()', correct: true },
-            { text: 'floatInt()', correct: false },
-            { text: 'getNumber()', correct: false },
-            { text: 'Number()', correct: false }
-        ]
+        question: 'How do you convert a "string" to a "numeric" value?'
     },
 ];
 
+var answersArr = [{
+    answers: [
+        { text: '"If" Statement', correct: false },
+        { text: '"Return" Statement', correct: false },
+        { text: '"For" Statement', correct: true },
+        { text: '"Loop" Statement', correct: false }
+    ],
+    answers: [
+        { text: '==', correct: false },
+        { text: '!=', correct: false },
+        { text: '=', correct: false },
+        { text: '===', correct: true }
+    ],
+    answers: [
+        { text: 'Global Scope', correct: false },
+        { text: 'Local Scope', correct: true },
+        { text: 'Function Scope', correct: false }
+    ],
+    answers: [
+        { text: 'parseInt()', correct: true },
+        { text: 'floatInt()', correct: false },
+        { text: 'getNumber()', correct: false },
+        { text: 'Number()', correct: false }
+    ]
+}];
+
+console.log(questionsArr.answers);
+
+var questions = $("#questions");
+var questionContainer = $('#question-container');
+var questionIndex = -1;
+var answersIndex = -1;
+var answers = $('#answer-btns');
+
+// Welcome Screen Variables
 var openScreen = $("#opening-screen");
-var userChoice = (correctBtn, wrongBtn);
-
-
-// Timer and Current Index #
-var timer = 30;
-var currentIndex = 0;
 
 // Highscore Variables
 var scoreList = $("high-scores");
+var scoreIndex = 0;
 
 
-// Welcome Screen Function
-function openingScreen() {
-    // Hide Questions 
-    questionOne.hide();
-    questionTwo.hide();
-    questionThree.hide();
-    questionFour.hide();
-    questionFive.hide();
-    // Hide Next Question Button
-    nextBtn.hide();
-    // Show Opening Screen
-    openScreen.show();
-}
+
 
 // Opening Screen Call
 openingScreen();
 
+// Welcome Screen Function
+function openingScreen() {
+    // Hide Next Question Button
+    nextBtn.hide();
+    // Hide Questions
+    questionContainer.hide();
+}
 
 // Start Game Call
 startBtn.on('click', startGame);
 
 // Start Game Function
 function startGame() {
+    console.log("Start");
     // Hide Start Button
     startBtn.hide();
     // Hide Welcome Screen
     openScreen.hide();
-    // Show Question One
-    questionOne.show();
+    // Show QUESTIONS
+    questionContainer.show();
+    showQuestion();
     // Show Next Button
     nextBtn.show();
+    // Next Button Function
+    nextBtn.on('click', showQuestion);
     // Being Timer Countdown
+
 }
 
-// Question One Function
-function questionOneTest() {
-    var correct = correctBtn;
-    var wrong = wrongBtn;
-    if (userChoice == correct) {
-        alert('button clicked');
-        questionTwo.show();
-    } else if (userChoice == wrong) {
-        alert(Incorrect);
-        questionTwo.show();  
-    }
-} 
 
+function showQuestion() {
+    questionIndex++;
+    questions.text(questionsArr[questionIndex].question);
+    answersIndex++;
+    answers.text(answersArr[answersIndex].answers);
+    answers.append(answersArr.answer)
 
+}
 
-
-// Question Two Function
-function questionTwoTest() {
-    var correct = correctBtn.on('click',nextQuestion());
-    var wrong = wrongBtn.on('click', nextQuestion());
-    if (userChoice === correct) {
-        questionThree.show();
-        nextBtn.on('click', questionTwo);
-    } else if (userChoice === wrong) {
-        alert(Incorrect);
-        questionThree.show();  
+function questionAnswer() {
+    questionIndex++;
+    if (questionsArr.length > questionIndex) {
+        showQuestion();
+    } else {
+        endGame();
     }
 }
 
-function nextQuestion() {
-    var correct = correctBtn.o;
-    var wrong = wrongBtn;
-    if (correctBtn === correct) {
-        currentIndex++;
-    } else if (wrong === wrongBtn) {
-        currentIndex++;
-    }
-}
+
 
 // END GAME
 function endGame() {
@@ -159,11 +148,4 @@ function renderScores() {
 
     }
 }
-
-// correctBtn.on('click', function () {
-//     currentIndex++;
-//     if (currentIndex === questionsArr.length) {
-        
-//     }
-// });
 
