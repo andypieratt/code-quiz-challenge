@@ -1,8 +1,17 @@
-* {
+body {
     background-color: antiquewhite;
     color: blueviolet;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: flex;
     display: block;
     align-items: center;
+}
+
+button {
+        background-color: red;
+            color: antiquewhite;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            display: block;
+            align-items: center;
 }
