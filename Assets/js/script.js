@@ -1,6 +1,5 @@
 // Button Variables
 var $startBtn = $("#start-btn");
-var $nextBtn = $("#next-btn");
 
 // Question and Answer Variables
 var questionsArr = [
@@ -52,7 +51,7 @@ var secondsRemaining = 30;
 var $openScreen = $("#opening-screen");
 
 // Highscore Variables
-var $scoreList = $("high-scores");
+var $scoreList = $("#high-scores");
 var score = 0;
 
 // Opening Screen Call
@@ -60,8 +59,6 @@ openingScreen();
 
 // Welcome Screen Function
 function openingScreen() {
-  // Hide Next Question Button
-  $nextBtn.hide();
   // Hide Questions
   $questionContainer.hide();
 }
@@ -115,13 +112,20 @@ function incrementQuestion() {
 
 // END GAME
 function endGame() {
-  // Hide Next Button
-  $nextBtn.hide();
   // Show Start Button
   $startBtn.show();
   //Alert Score
   //Capture User Initials
+  var userInitials = prompt("Enter Intials to Store Highscore!");
   //Save Score and Initials to Local Storage
+  var currentScores = JSON.parse(localStorage.getItem("highscore")) || [];
+  var userObj = {
+    userInitials,
+    score,
+  };
+
+  currentScores.push(userObj);
+  localStorage.setItem("highscore", JSON.stringify(currentScores));
   // Re-render High Scores
   renderScores();
 }
@@ -133,15 +137,11 @@ function renderScores() {
   // Clear High Score Field
   $scoreList.empty();
   // Loop Through Array of Score Objects
-  if ($scoreList.length === 0) {
-    return $scoreList.text("No Scores Yet!");
-  }
   for (var i = 0; i < currentScores.length; i++) {
     var scoreObj = currentScores[i];
-    var newLi = $("<li>", { class: "list-item" }).text(
-      scoreObj,
-      initials + "---------" + scoreObj.score
-    );
+    var newLi = $("<li>", { class: "list-item" });
+    newLi.text(scoreObj.userInitials + "---------" + scoreObj.score);
+
     $scoreList.append(newLi);
   }
 }
