@@ -4,47 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Assets/css/style.css"/>
     <title>CODE GAME QUIZ!</title>
+    <!--BOOTSTRAP CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--CUSTOM CSS-->
+    <link rel="stylesheet" href="./Assets/css/style.css"/>
 </head>
+
 <body>
-    <!--Opening Header-->
-    <section id="opening-screen">    
+    <!--OPENING HEADER-->
+    <section class="text-center p-5" id="opening-screen">    
     <h1>Welcome to the game of coding knowledge!</h1>
     <p id="start-text">Press the "START" button to test your chops and beat your high score!</p>
     
-    <!--Button Section-->
-        <!--Start Button-->
-        <div>
+    <!--BUTTON SECTION-->
+        <!--START BUTTON-->
+        <div class="d-flex justify-content-center">
             <button id="start-btn">START</button>
         </div>
     </section>
 
-    <!--Questions Section-->
-    <section>
+    <!--QUESTIONS SECTION-->
+    <section class="d-flex justify-content-center align-items-center">
         <div id="question-container">
-            <h2>Question: </h2>
-            <h3 id="questions"></h3>
-            <div id="answers">
+            <h1 class="text-center" id="game-timer">TIME REMAINING: </h1>
+            <h2 class="text-center">Question: </h2>
+            <h3 class="text-center" id="questions"></h3>
+            <div class="text-center d-block justify-content-space-between  m-3 p-2" id="answers">
             </div>
         </div>
     </section>
 
-    <!--High Score List-->
-    <section>
+    <!--HIGHSCORE LIST-->
+    <section class="d-flex justify-content-center flex-column align-items-center p-5">
         <div>
-            <h3>High Scores</h3>
-            <ul id="high-scores">
+            <h3 class="text-center">High Scores:</h3>
+            <ul class="list-group list-group-flush" id="high-scores">
                 <!-- <li class="list-item"></li> -->
             </ul>
         </div>
     </section>
     
-    <!--JQUERY Import JS-->
+    <!--JQUERY IMPORT JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!--Custom JS-->
+    <!--CUSTOM JS-->
     <script src="./Assets/js/script.js"></script>
 </body>
 </html>

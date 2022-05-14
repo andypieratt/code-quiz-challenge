@@ -1,7 +1,7 @@
-// Button Variables
+// BUTTON VARIABLES
 var $startBtn = $("#start-btn");
 
-// Question and Answer Variables
+// QUESTION AND ANSWER VARIABLES
 var questionsArr = [
   {
     question: 'What statement generates a "loop?"',
@@ -45,42 +45,56 @@ var $questions = $("#questions");
 var $questionContainer = $("#question-container");
 var questionIndex = -1;
 
-var secondsRemaining = 30;
+// TIMER VARIABLES
+var secondsRemaining = 10;
+var $timerText = $("#game-timer");
 
-// Welcome Screen Variables
+// WELCOME SCREEN VARIABLES
 var $openScreen = $("#opening-screen");
 
-// Highscore Variables
+// HIGHSCORE VARIABLES
 var $scoreList = $("#high-scores");
 var score = 0;
 
-// Opening Screen Call
+// WELCOME SCREEN CALL
 openingScreen();
 
-// Welcome Screen Function
+// WELCOME SCREEN FUNCTION
 function openingScreen() {
-  // Hide Questions
+  // HIDE QUESTIONS
   $questionContainer.hide();
 }
 
-// Start Game Call
+// START GAME CALL
 $startBtn.on("click", startGame);
 
-// Start Game Function
+// START GAME FUNCTION
 function startGame() {
   console.log("Start");
-  // Hide Start Button
+  // HIDE START BUTTON
   $startBtn.hide();
-  // Hide Welcome Screen
+  // HIDE WELCOME SCREEN
   $openScreen.hide();
-  // Show QUESTION 1
+  // SHOW QUESTION
   $questionContainer.show();
   questionIndex = 0;
   showQuestion(questionIndex);
-  // Being Timer Countdown
+  // SETTING AND BEGINNING TIMER COUNT-DOWN
+  secondsRemaining = 10;
+  score = 0;
+
+  var gameTimer = setInterval(() => {
+    secondsRemaining--;
+    $timerText.text("Time Remaining: " + secondsRemaining);
+
+    if (secondsRemaining === 0) {
+      clearInterval(gameTimer);
+      endGame();
+    }
+  }, 1000);
 }
 
-// // QUESTION FUNCTION
+// QUESTION FUNCTION
 function showQuestion(questionIndex) {
   var questionObj = questionsArr[questionIndex];
   $questions.text(questionObj.question);
@@ -101,6 +115,7 @@ function showQuestion(questionIndex) {
   }
 }
 
+// INCREMENT QUESTION FUNCTION
 function incrementQuestion() {
   questionIndex++;
   if (questionsArr.length > questionIndex) {
@@ -110,14 +125,15 @@ function incrementQuestion() {
   }
 }
 
-// END GAME
+// END GAME FUNCTION
 function endGame() {
-  // Show Start Button
-  $startBtn.show();
-  //Alert Score
-  //Capture User Initials
+  // HIDE QUESTIONS
+  $questionContainer.hide();
+  // ALERT USER OF THEIR SCORE
+  alert("Your score is " + score);
+  // CAPTURE USER INITIALS
   var userInitials = prompt("Enter Intials to Store Highscore!");
-  //Save Score and Initials to Local Storage
+  // SAVE SCORE AND INITIALS TO LOCAL STORAGE
   var currentScores = JSON.parse(localStorage.getItem("highscore")) || [];
   var userObj = {
     userInitials,
@@ -126,22 +142,22 @@ function endGame() {
 
   currentScores.push(userObj);
   localStorage.setItem("highscore", JSON.stringify(currentScores));
-  // Re-render High Scores
+  // RE-RENDER HIGHSCORES
   renderScores();
 }
 
-// RENDER HIGH SCORES
+// RENDER HIGH SCORES FUNCTION
 function renderScores() {
-  // Get Current Local Storage Data
+  // GET CURRENT LOCAL STORAGE DATA
   var currentScores = JSON.parse(localStorage.getItem("highscore")) || [];
-  // Clear High Score Field
+  // CLEAR HIGHSCORE FIELD
   $scoreList.empty();
-  // Loop Through Array of Score Objects
+  // LOOP THROUGH SCORE OBJECTS
   for (var i = 0; i < currentScores.length; i++) {
     var scoreObj = currentScores[i];
     var newLi = $("<li>", { class: "list-item" });
     newLi.text(scoreObj.userInitials + "---------" + scoreObj.score);
-
+    // APPEND SCORES TO DOCUMENT
     $scoreList.append(newLi);
   }
 }
