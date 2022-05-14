@@ -70,7 +70,6 @@ $startBtn.on("click", startGame);
 
 // START GAME FUNCTION
 function startGame() {
-  console.log("Start");
   // HIDE START BUTTON
   $startBtn.hide();
   // HIDE WELCOME SCREEN
